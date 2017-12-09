@@ -10,10 +10,12 @@
 #include "Paratroopa.h"
 #include "HammerBro.h"
 #include "Magikoopa.h"
+#include <fstream>
 
 using namespace std;
 
 //funciones
+void QuePaso(string);
 Minion* Equipo(vector<Minion*>);
 void simulacion(Minion**,Minion**);
 
@@ -29,7 +31,7 @@ int main(){
 	 	cout<<"3) Modificar un Minion\n";
 	 	cout<<"4) Crear un Equipo\n";
 		cout<<"5) Eliminar un Equipo\n";
-	 	cout<<"6) GUARDAR\n";
+	 	cout<<"6) simulacion\n";
 	 	cout<<"7) SALIR\n";
 	 	cin>>menu1;
 		if (menu1==1){
@@ -50,7 +52,7 @@ int main(){
 					if (tipmale==1){//AGREGAR GOOMBA
 						string id="",nombre="";
 						int intimidacion=0,tamano=0,hp=0;
-						id="1";
+						id="0";
 						cout<<"Ingrese el nombre\n";
 						cin>>nombre; 
 						cout<<"Ingrese nivel de intimidacion\n";
@@ -69,7 +71,7 @@ int main(){
 					if (tipmale==2){//AGREGAR CHAIN CHO
 						string id="",nombre="",color="";
 						int intimidacion=0,hp=0;
-						id="2";
+						id="0";
 						cout<<"Ingrese el nombre\n";
 						cin>>nombre; 
 						cout<<"Ingrese nivel de intimidacion\n";
@@ -97,7 +99,7 @@ int main(){
 					if (tipfly==1){//AGREGAR BOO
 						string id="",nombre="",color=""	;
 						int hp=0,vuelo=0;
-						id="3";
+						id="0";
 						cout<<"Ingrese el nombre\n";
 						cin>>nombre; 
 						cout<<"Ingrese nivel de vuelo\n";
@@ -117,7 +119,7 @@ int main(){
 					if (tipfly==2){//AGREGAR PARATROOPA
 						string id="",nombre="",color="";
 						int intimidacion=0,hp=0,vuelo=0;
-						id="4";
+						id="0";
 						cout<<"Ingrese el nombre\n";
 						cin>>nombre; 
 						cout<<"Ingrese capacidad de vuelo\n";
@@ -143,7 +145,7 @@ int main(){
 					if (tiprange==1){//AGREGAR HAMMER BRO
 						string id="",nombre="",tamano="";
 						int intimidacion=0,hp=0,rango=0;
-						id="5";
+						id="0";
 						cout<<"Ingrese el nombre\n";
 						cin>>nombre; 
 						cout<<"Ingrese su rango\n";
@@ -162,7 +164,7 @@ int main(){
 					if (tiprange==2){//AGREGAR MAGIKOOPA
 						string id="",nombre="",color="";
 						int intimidacion=0,hp=0,rango=0;
-						id="6";
+						id="0";
 						cout<<"Ingrese el nombre\n";
 						cin>>nombre; 
 						cout<<"Ingrese su rango\n";
@@ -375,22 +377,54 @@ int main(){
         		cout<<i;
         		cout<<"Capitan--->"<<ListEquipos[i][0]->getNombre()<<endl;
         		}
-        		int posEliminar=0;
+        		int posEliminar;
         		cin>>posEliminar;
-        		ListEquipos.erase(ListEquipos.begin()+posEliminar);
+
+			}
+		}		
+		if (menu1==6){//Simulacion
+			int size=ListMinions.size();
+			if (size==0){
+				cout<<"No hay equipos de Minions\n";
+			}else{
+				cout<<"-----EQUIPOS------\n";
+        		cout<<"INGRESE A QUE EQUIPO con la simulacion\n";
+        		for (int i = 0; i < ListEquipos.size(); i++) {
+        		cout<<i;
+        		Minion** x =  ListEquipos[i];
+        		cout<<"Capitan--->"<<x[0]->getNombre()<<endl;
+        		}
+        		cout<<"Ingrese la posicion del equipo 1\n";
+        		int pos1;
+        		cin>>pos1;
+        		cout<<"Ingrese la posicion del equipo 1\n";        		
+        		int pos2;
+        		cin>>pos2;
+        		simulacion(ListEquipos[pos1],ListEquipos[pos2]);				
 			}
 		}		
 
 	}
 	return 0;
 }
-void simulacion(Minion**,Minion**){
-	for (int i = 0; i < 7; ++i){
-		bool dead=false;
-		while(dead){
-
+void simulacion(Minion** player1,Minion** player2){
+	bool dead=false;
+	int winTeam1=0,winTeam2=0, vueltas=0;
+	cout<<"Entro a la guerra\n";
+	while(vueltas<7){
+		while(!dead){
+			player1[vueltas]->ataque(player2[vueltas]);
+			player2[vueltas]->ataque(player1[vueltas]);
+			if (player2[vueltas]->getId()=="0"){
+				dead=true;
+				winTeam2++;
+			}
+			if (player1[vueltas]->getId()=="0"){
+				dead=true;
+				winTeam1++;
+			}			
 		}
-			
+		vueltas++;
 	}
 }
 
@@ -403,4 +437,12 @@ Minion* Equipo(vector<Minion*> vectorM){
 	int posicion=0;
 	cin>>posicion;
 	return vectorM[posicion];
+}
+
+void QuePaso(string bitacora){
+  ofstream archivoTxt("LOG.txt", fstream::app | std::ios::out);
+  if (archivoTxt.is_open()) {
+    archivoTxt << "\n"<<bitacora;
+    archivoTxt.close();
+  }
 }

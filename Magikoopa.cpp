@@ -1,4 +1,10 @@
 #include "Magikoopa.h"
+#include "Melee.h"
+#include "ChainChop.h"
+#include "Boo.h"
+#include "Paratroopa.h"
+#include "HammerBro.h"
+#include "Goomba.h"
 
 Magikoopa::Magikoopa(string Id,string Nombre,int Ganadas,int Experiencia,int Rango,string Color,int HP,int Defensa,int Velocidad,int Fuerza,bool Especial):Range(Id, Nombre, Ganadas, Experiencia, Rango){
 	this->Color=Color;
@@ -46,18 +52,41 @@ void Magikoopa::setEspecial(bool Especial){
 bool Magikoopa::getEspecial(){
    return Especial;
 }
-void Magikoopa::ataque(Minion*){
-   /*
+void Magikoopa::ataque(Minion* vrs) {
    int atacar=0;
-   if (!dynamic_cast<Flying*>(vrs)){
-      atacar= Fuerza- vrs->getDefensa();
-      int vida= vrs->getHP();
-      vrs->setHP(vida-atacar);
-   }else{
-      atacar= (Fuerza*0.50)- vrs->getDefensa();
-      int vida= vrs->getHP();
-      vrs->setHP(vida-atacar);
+   if (dynamic_cast<Goomba*>(vrs)){//melee
+      atacar= Fuerza- dynamic_cast<Goomba*>(vrs)->getDefensa();
+      int vida= dynamic_cast<Goomba*>(vrs)->getHP();
+      dynamic_cast<Goomba*>(vrs)->setHP(vida-atacar);
    }
-   */
+   if (dynamic_cast<ChainChop*>(vrs)){//melee
+      atacar= Fuerza- dynamic_cast<ChainChop*>(vrs)->getFuerza();
+      int vida= dynamic_cast<ChainChop*>(vrs)->getHP();
+      dynamic_cast<ChainChop*>(vrs)->setHP(vida-atacar);
+   }
+   if (dynamic_cast<Boo*>(vrs)){//flying
+      atacar= Fuerza- dynamic_cast<Boo*>(vrs)->getDefensa();
+      int vida= dynamic_cast<Boo*>(vrs)->getHP();
+      dynamic_cast<Boo*>(vrs)->setHP(vida-atacar);
+   }
+   if (dynamic_cast<Paratroopa*>(vrs)){//flying
+      atacar= Fuerza- dynamic_cast<Paratroopa*>(vrs)->getDefensa();
+      int vida= dynamic_cast<Paratroopa*>(vrs)->getHP();
+      dynamic_cast<Paratroopa*>(vrs)->setHP(vida-atacar);
+   }
+   if (dynamic_cast<HammerBro*>(vrs)){//range
+      atacar= Fuerza- dynamic_cast<HammerBro*>(vrs)->getDefensa();
+      int suma= atacar*0.50;
+      atacar+=suma;
+      int vida= dynamic_cast<HammerBro*>(vrs)->getHP();
+      dynamic_cast<HammerBro*>(vrs)->setHP(vida-atacar);
+   }           
+   if (dynamic_cast<Magikoopa*>(vrs)){//range
+      atacar= Fuerza- dynamic_cast<Magikoopa*>(vrs)->getDefensa();
+      int suma= atacar*0.50;
+      atacar+=suma;      
+      int vida= dynamic_cast<Magikoopa*>(vrs)->getHP();
+      dynamic_cast<Magikoopa*>(vrs)->setHP(vida-atacar);
+   }   
 }
 

@@ -7,7 +7,7 @@ using namespace std;
 
 #ifndef HAMMERBRO_H
 #define HAMMERBRO_H
-class HammerBro : Range{
+class HammerBro : public Range{
 	protected:
 		string tamano;
 		int HP;

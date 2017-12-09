@@ -7,7 +7,7 @@ using namespace std;
 
 #ifndef PARATROOPA_H
 #define PARATROOPA_H
-class Paratroopa : Flying{
+class Paratroopa : public Flying{
 	protected:
 		string Color;
 		int HP;

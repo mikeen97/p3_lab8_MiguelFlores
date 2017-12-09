@@ -40,6 +40,9 @@ bool ChainChop::getEspecial(){
    return Especial;
 }
 void ChainChop::ataque(Minion* vrs){
+  
+}
+
    /*
    int atacar=0;
    if (!dynamic_cast<Flying*>(vrs)){
@@ -51,5 +54,5 @@ void ChainChop::ataque(Minion* vrs){
       int vida= vrs->getHP();
       vrs->setHP(vida-atacar);
    }*/
-}
+
 

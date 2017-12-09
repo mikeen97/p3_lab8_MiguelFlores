@@ -7,7 +7,7 @@ using namespace std;
 
 #ifndef MAGIKOOPA_H
 #define MAGIKOOPA_H
-class Magikoopa : Range{
+class Magikoopa : public Range{
 	protected:
 		string Color;
 		int HP;

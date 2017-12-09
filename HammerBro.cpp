@@ -47,6 +47,7 @@ bool HammerBro::getEspecial(){
    return Especial;
 }
 void HammerBro::ataque(Minion*){
+   /*
    int atacar=0;
    if (!dynamic_cast<Flying*>(vrs)){
       atacar= Fuerza- vrs->getDefensa();
@@ -57,5 +58,6 @@ void HammerBro::ataque(Minion*){
       int vida= vrs->getHP();
       vrs->setHP(vida-atacar);
    }
+   */
 }
 

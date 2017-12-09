@@ -7,7 +7,7 @@ using namespace std;
 
 #ifndef CHAINCHOP_H
 #define CHAINCHOP_H
-class ChainChop : Melee{
+class ChainChop :public  Melee{
 	protected:
 		string color;
 		int HP;

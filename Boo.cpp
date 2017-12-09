@@ -48,16 +48,7 @@ bool Boo::getEspecial(){
    return Especial;
 }
 void Boo::ataque(Minion* vrs){
-   int atacar=0;
-   if (dynamic_cast<Melee*>(vrs)){
-      atacar= Fuerza- vrs->getDefensa();
-      int vida= vrs->getHP();
-      vrs->setHP(vida-atacar);
-   }else{
-      atacar= (Fuerza*0.50)- vrs->getDefensa();
-      int vida= vrs->getHP();
-      vrs->setHP(vida-atacar);
-   }   
+
 }
 
 

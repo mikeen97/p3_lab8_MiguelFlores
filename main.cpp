@@ -22,22 +22,24 @@ int main(){
 	vector<Minion*> ListMinions;
      cout<<"Bienvenido al Sistema "<<endl;
      int menu1=0;
-     while(menu1!=4){
-	    cout<<"Bienvenido al sistema\n";
-	    cout<<"1) Agregar un Minion\n";
-		cout<<"2) Eliminar un Minion\n";
-		cout<<"3) Modificar un Minion\n";
-		cout<<"4) Crear un Equipo\n";
-		cout<<"5) GUARDAR\n";
-		cout<<"6) SALIR\n";
-		cin>>menu1;
+     while(menu1!=7){
+     	cout<<"Bienvenido al sistema\n";
+     	cout<<"1) Agregar un Minion\n";
+	 	cout<<"2) Eliminar un Minion\n";
+	 	cout<<"3) Modificar un Minion\n";
+	 	cout<<"4) Crear un Equipo\n";
+		cout<<"5) Eliminar un Equipo\n";
+	 	cout<<"6) GUARDAR\n";
+	 	cout<<"7) SALIR\n";
+	 	cin>>menu1;
 		if (menu1==1){
-			int tipo1=0;
+			int tipo1=1;
 			while(tipo1>0&&tipo1<4){
 				cout<<"Ingrese que tipo de Minion desea agregar\n";
 		    	cout<<"1) Tipo Melee\n";
 				cout<<"2) Tipo Flying\n";
 				cout<<"3) Tipo Range\n";
+				cout<<"4) SALIR\n";
 				cin>>tipo1;
 				if (tipo1==1){//MENU DE MELEE
 					int tipmale=0;
@@ -60,6 +62,8 @@ int main(){
 						 	cin>>hp;
 						 } while (hp<20||hp>40);
 						Goomba* x = new Goomba(id, nombre, 0, 0, intimidacion, tamano, hp, 0, 65, 10, false);
+						ListMinions.push_back(x);
+						cout<<ListMinions.size()<<endl;
 						cout<<"Creado\n";
 					}
 					if (tipmale==2){//AGREGAR CHAIN CHO
@@ -76,7 +80,9 @@ int main(){
 						 	cout<<"Ingrese el hp del Goomba\n";
 						 	cin>>hp;
 						 } while (hp<10&&hp>30);
-						ChainChop(id,nombre,0,0,intimidacion,color,hp,20,10,false);						 
+						ChainChop* x = new ChainChop(id, nombre, 0, 0, intimidacion, color, hp, 20, 10,false);
+						ListMinions.push_back(x);	
+						cout<<ListMinions.size()<<endl;										 
 					}
 				}
 				if (tipo1==2){//MENU DE FLYING
@@ -102,8 +108,10 @@ int main(){
 						 	cout<<"Ingrese el hp del Goomba\n";
 						 	cin>>hp;
 						 } while (hp<10&&hp>30);
-						Boo(id, nombre, 0, 0, vuelo, color,
+						Boo* x = new Boo(id, nombre, 0, 0, vuelo, color,
 							 hp, 20, 35, 8, false);
+						ListMinions.push_back(x);
+						cout<<ListMinions.size()<<endl;						
 
 					}
 					if (tipfly==2){//AGREGAR PARATROOPA
@@ -120,8 +128,10 @@ int main(){
 						 	cout<<"Ingrese el hp del Goomba\n";
 						 	cin>>hp;
 						 } while (hp<10&&hp>30);
-						Paratroopa(id, nombre, 0, 0,vuelo,
+						Paratroopa* x = new Paratroopa(id, nombre, 0, 0,vuelo,
 							 color, hp, 40, 10, 9,false);
+						ListMinions.push_back(x);
+						cout<<ListMinions.size()<<endl;						
 					}
 				}
 				if (tipo1==3){//MENU DE RANGE
@@ -144,8 +154,10 @@ int main(){
 						 	cout<<"Ingrese el hp del Goomba\n";
 						 	cin>>hp;
 						} while (hp<60&&hp>80);
-				HammerBro(id, nombre, 0, 0,
-					 rango, tamano, hp, 15, 30, 6, false);
+						HammerBro* x = new HammerBro(id, nombre, 0, 0,
+					 	rango, tamano, hp, 15, 30, 6, false);
+						ListMinions.push_back(x);
+						cout<<ListMinions.size()<<endl;						
 					}
 					if (tiprange==2){//AGREGAR MAGIKOOPA
 						string id="",nombre="",color="";
@@ -161,8 +173,10 @@ int main(){
 						 	cout<<"Ingrese el hp del Goomba\n";
 						 	cin>>hp;
 						} while (hp<60&&hp>80);
-						Magikoopa(id,nombre,0,0,
+						Magikoopa* x = new Magikoopa(id,nombre,0,0,
 							rango,color,hp,0,60,7,false);
+						ListMinions.push_back(x);
+						cout<<ListMinions.size()<<endl;						
 					}					
 				}
 			}
@@ -171,7 +185,7 @@ int main(){
 	        cout<<endl;
 	        for (int i = 0; i < ListMinions.size(); i++) {
 	          cout<<i<<"- ";
-	          dynamic_cast<Minion*>(ListMinions[i])->getNombre();
+	          cout<<dynamic_cast<Minion*>(ListMinions[i])->getNombre()<<endl;
 	        }
 	        cout<<endl;
 	        cout<<"Ingrese posicion de la persona que desea eliminar"<<endl;
@@ -181,8 +195,8 @@ int main(){
 	          cout<<"Persona inexistente, ingrese de nuevo"<<endl;
 	          cin>>pos;
 	        }
-	        delete ListMinions.at(pos);
 	        ListMinions.erase(ListMinions.begin()+pos);
+	        cout<<"Usuarios disponibles\n";
 		}
 		if (menu1==3){//Modificar minion
 	        cout<<endl;
@@ -339,18 +353,44 @@ int main(){
 
 		}
 		if (menu1==4){//Crear equipo
-        	Minion* Participantes[7];
-        	for (int i = 0; i < 7; i++) {
-        	  Participantes[i] = Equipo(ListMinions);
-        	}
-        	ListEquipos.push_back(Participantes);
+			int size=ListMinions.size();
+			if (size<7){
+				cout<<"No hay suficientes Minions\n";
+			}else{
+        		Minion* Participantes[7];
+        		for (int i = 0; i < 7; i++) {
+        		  Participantes[i] = Equipo(ListMinions);
+        		}
+        		ListEquipos.push_back(Participantes);
+			}
 		}
+		if (menu1==5){//ELiminar equipo
+			int size=ListMinions.size();
+			if (size==0){
+				cout<<"No hay equipos de Minions\n";
+			}else{
+				cout<<"-----EQUIPOS------\n";
+        		cout<<"INGRESE A QUE EQUIPO DESEA ELIMINAR\n";
+        		for (int i = 0; i < ListEquipos.size(); i++) {
+        		cout<<i;
+        		cout<<"Capitan--->"<<ListEquipos[i][0]->getNombre()<<endl;
+        		}
+        		int posEliminar=0;
+        		cin>>posEliminar;
+        		ListEquipos.erase(ListEquipos.begin()+posEliminar);
+			}
+		}		
+
 	}
 	return 0;
 }
 void simulacion(Minion**,Minion**){
 	for (int i = 0; i < 7; ++i){
-		
+		bool dead=false;
+		while(dead){
+
+		}
+			
 	}
 }
 

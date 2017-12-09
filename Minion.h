@@ -27,5 +27,7 @@ class Minion{
 		int getExperiencia();
 		void setExperiencia(int);
 
+		virtual void ataque(Minion*)=0;
+
 };
 #endif

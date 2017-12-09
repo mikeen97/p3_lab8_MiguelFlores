@@ -1,6 +1,6 @@
 #include "ChainChop.h"
 
-ChainChop::ChainChop(string color,int HP,int Velocidad,int Fuerza,bool Especial){
+ChainChop::ChainChop(string Id,string Nombre,int Ganadas,int Experiencia,int Intimidacion,string color,int HP,int Velocidad,int Fuerza,bool Especial):Melee(Id, Nombre, Ganadas, Experiencia, Intimidacion){
 	this->color=color;
 	this->HP=HP;
 	this->Velocidad=Velocidad;
@@ -39,3 +39,17 @@ void ChainChop::setEspecial(bool Especial){
 bool ChainChop::getEspecial(){
    return Especial;
 }
+void ChainChop::ataque(Minion* vrs){
+   /*
+   int atacar=0;
+   if (!dynamic_cast<Flying*>(vrs)){
+      atacar= Fuerza- vrs->getDefensa();
+      int vida= vrs->getHP();
+      vrs->setHP(vida-atacar);
+   }else{
+      atacar= (Fuerza*0.50)- vrs->getDefensa();
+      int vida= vrs->getHP();
+      vrs->setHP(vida-atacar);
+   }*/
+}
+

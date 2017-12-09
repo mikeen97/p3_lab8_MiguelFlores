@@ -1,7 +1,7 @@
 #include "Goomba.h"
 
-Goomba::Goomba(int tamano,int HP,int Defensa,int Velocidad,int Fuerza,bool Especial){
-	this->tamano=tamano;
+Goomba::Goomba(string Id,string Nombre,int Ganadas,int Experiencia,int Intimidacion,int tamano,int HP,int Defensa,int Velocidad,int Fuerza,bool Especial):Melee(Id, Nombre, Ganadas, Experiencia, Intimidacion){
+	this->tamano=tamano;                                                   
 	this->HP=HP;
 	this->Defensa=Defensa;
 	this->Velocidad=Velocidad;
@@ -10,7 +10,8 @@ Goomba::Goomba(int tamano,int HP,int Defensa,int Velocidad,int Fuerza,bool Espec
 }
 Goomba::Goomba(){
 
-}void Goomba::setTamano(int tamano){
+}
+void Goomba::setTamano(int tamano){
    this-> tamano=tamano;
 }
 int Goomba::getTamano(){
@@ -45,4 +46,18 @@ void Goomba::setEspecial(bool Especial){
 }
 bool Goomba::getEspecial(){
    return Especial;
+}
+
+void Goomba::ataque(Minion* vrs){
+   /*
+   int atacar=0;
+   if (dynamic_cast<Melee*>(vrs)){
+      atacar= Fuerza - vrs->getDefensa();
+      int vida= vrs->getHP();
+      vrs->setHP(vida-atacar);
+   }else{
+      atacar= (Fuerza*0.50)- vrs->getDefensa();
+      int vida= vrs->getHP();
+      vrs->setHP(vida-atacar);
+   }*/
 }

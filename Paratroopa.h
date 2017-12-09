@@ -16,7 +16,7 @@ class Paratroopa : Flying{
 		int Fuerza;
 		bool Especial;
 	public:
-		Paratroopa(string,int,int,int,int,bool);
+		Paratroopa(string,string,int,int,int,string,int,int,int,int,bool);
 		Paratroopa();
 		string getColor();
 		void setColor(string);
@@ -35,6 +35,12 @@ class Paratroopa : Flying{
 
 		bool getEspecial();
 		void setEspecial(bool);
+		virtual void ataque(Minion*);
+
+		//Operaciones de Archivos
+		//void write(ofstream&);
+		//void read(ifstream&);
+
 
 };
 #endif

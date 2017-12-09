@@ -16,7 +16,7 @@ class HammerBro : Range{
 		int Fuerza;
 		bool Especial;
 	public:
-		HammerBro(string,int,int,int,int,bool);
+		HammerBro(string,string,int,int,int,string,int,int,int,int,bool);
 		HammerBro();
 		string getTamano();
 		void setTamano(string);
@@ -35,6 +35,12 @@ class HammerBro : Range{
 
 		bool getEspecial();
 		void setEspecial(bool);
+
+		virtual void ataque(Minion*);
+
+		//Operaciones de Archivos
+		//void write(ofstream&);
+		//void read(ifstream&);		
 
 };
 #endif

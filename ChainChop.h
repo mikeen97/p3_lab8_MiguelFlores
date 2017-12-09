@@ -15,7 +15,7 @@ class ChainChop : Melee{
 		int Fuerza;
 		bool Especial;
 	public:
-		ChainChop(string,int,int,int,bool);
+		ChainChop(string,string,int,int,int,string,int,int,int,bool);
 		ChainChop();
 		string getColor();
 		void setColor(string);
@@ -32,5 +32,10 @@ class ChainChop : Melee{
 		bool getEspecial();
 		void setEspecial(bool);
 
+		virtual void ataque(Minion*);
+
+		//Operaciones de Archivos
+	//	void write(ofstream&);
+	//	void read(ifstream&);
 };
 #endif

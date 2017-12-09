@@ -2,12 +2,15 @@
 #include <string>
 #include <vector>
 #include "Melee.h"
+#pragma once
+
 
 using namespace std;
 
 #ifndef GOOMBA_H
 #define GOOMBA_H
-class Goomba : Melee{
+
+class Goomba : public Melee{
 	protected:
 		int tamano;
 		int HP;
@@ -15,8 +18,9 @@ class Goomba : Melee{
 		int Velocidad;
 		int Fuerza;
 		bool Especial;
+
 	public:
-		Goomba(int,int,int,int,int,bool);
+		Goomba(string,string,int,int,int,int,int,int,int,int,bool);
 		Goomba();
 		int getTamano();
 		void setTamano(int);
@@ -36,5 +40,11 @@ class Goomba : Melee{
 		bool getEspecial();
 		void setEspecial(bool);
 
+		void ataque(Minion*);
+		//Operaciones de Archivos
+		//void write(ofstream&);
+		//void read(ifstream&);		
+
+		//virtual ~Goomba();
 };
 #endif

@@ -2,12 +2,14 @@
 #include <string>
 #include <vector>
 #include "Flying.h"
+#pragma once
+
 
 using namespace std;
 
 #ifndef BOO_H
 #define BOO_H
-class Boo : Flying{
+class Boo : public Flying{
 	protected:
 		string Color;
 		int HP;
@@ -16,7 +18,7 @@ class Boo : Flying{
 		int Fuerza;
 		bool Especial;
 	public:
-		Boo(string,int,int,int,int,bool);
+		Boo(string,string,int,int,int,string,int,int,int,int,bool);
 		Boo();
 		string getColor();
 		void setColor(string);
@@ -35,6 +37,11 @@ class Boo : Flying{
 
 		bool getEspecial();
 		void setEspecial(bool);
+
+		virtual void ataque(Minion*);
+		//Operaciones de Archivos
+		//virtual void write(ofstream&);
+		//virtual void read(ifstream&);		
 
 };
 #endif

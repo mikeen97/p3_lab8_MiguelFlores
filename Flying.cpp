@@ -1,6 +1,6 @@
 #include "Flying.h"
 
-Flying::Flying(int Vuelo){
+Flying::Flying(string Id,string Nombre,int Ganadas,int Experiencia,int Vuelo):Minion(Id, Nombre, Ganadas, Experiencia){
 	this->Vuelo=Vuelo;
 }
 Flying::Flying(){

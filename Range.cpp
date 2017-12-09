@@ -1,6 +1,6 @@
 #include "Range.h"
 
-Range::Range(int Rango){
+Range::Range(string Id,string Nombre,int Ganadas,int Experiencia,int Rango):Minion(Id, Nombre, Ganadas, Experiencia){
 	this->Rango=Rango;
 }
 Range::Range(){

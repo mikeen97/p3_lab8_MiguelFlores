@@ -16,7 +16,7 @@ class Magikoopa : Range{
 		int Fuerza;
 		bool Especial;
 	public:
-		Magikoopa(string,int,int,int,int,bool);
+		Magikoopa(string,string,int,int,int,string,int,int,int,int,bool);
 		Magikoopa();
 		string getColor();
 		void setColor(string);
@@ -35,6 +35,11 @@ class Magikoopa : Range{
 
 		bool getEspecial();
 		void setEspecial(bool);
+		
+		virtual void ataque(Minion*);
+		//Operaciones de Archivos
+		//void write(ofstream&);
+		//void read(ifstream&);		
 
 };
 #endif

@@ -1,6 +1,6 @@
 #include "Magikoopa.h"
 
-Magikoopa::Magikoopa(string Color,int HP,int Defensa,int Velocidad,int Fuerza,bool Especial){
+Magikoopa::Magikoopa(string Id,string Nombre,int Ganadas,int Experiencia,int Rango,string Color,int HP,int Defensa,int Velocidad,int Fuerza,bool Especial):Range(Id, Nombre, Ganadas, Experiencia, Rango){
 	this->Color=Color;
 	this->HP=HP;
 	this->Defensa=Defensa;
@@ -46,3 +46,16 @@ void Magikoopa::setEspecial(bool Especial){
 bool Magikoopa::getEspecial(){
    return Especial;
 }
+void Magikoopa::ataque(Minion*){
+   int atacar=0;
+   if (!dynamic_cast<Flying*>(vrs)){
+      atacar= Fuerza- vrs->getDefensa();
+      int vida= vrs->getHP();
+      vrs->setHP(vida-atacar);
+   }else{
+      atacar= (Fuerza*0.50)- vrs->getDefensa();
+      int vida= vrs->getHP();
+      vrs->setHP(vida-atacar);
+   }
+}
+
